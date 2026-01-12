@@ -18,19 +18,28 @@
  *        <do something with output>
  *     }
  *
- */
+ 
+ https://github.com/egrembocki/psu-capstone/blob/main/src/psu_capstone/agent_layer/htm/spatial_pooler.py
+ 
+ Pack bits input vector into bytes
+ 2048 bits -> 256 bytes (256 * 8 = 2048)
+ bit is in byte i / 8 at position i % 8
+ e.g., bit 13 is in byte 1 (13 / 8 = 1) at position 5 (13 % 8 = 5)
 
-// Pack bits input vector into bytes
-// 2048 bits -> 256 bytes (256 * 8 = 2048)
-// bit is in byte i / 8 at position i % 8
-// e.g., bit 13 is in byte 1 (13 / 8 = 1) at position 5 (13 % 8 = 5)
+    fn get_bit(active_bits: &[u8; INPUT_BYTES], index: usize) -> u8 
+    {
+        let byte_index = index / BITS_PER_BYTE;
+        let bit_index = index % BITS_PER_BYTE;
+        (active_bits[byte_index] >> bit_index) & 1
+    }
+ */
 
 
 
 pub const INPUT_BYTES: usize = 256;
 pub const BITS_PER_BYTE: usize = 8;
-pub const INPUT_ZERO_VECTOR: [u8; INPUT_BYTES] = [0x00; INPUT_BYTES]; 
-pub const INPUT_ONES_VECTOR: [u8; INPUT_BYTES] = [0xFF; INPUT_BYTES];
+pub const INPUT_ZERO_VECTOR: [0x00u8; INPUT_BYTES];
+pub const INPUT_ONES_VECTOR: [0xFFu8; INPUT_BYTES];
 
 /// Spatial Pooler Interface
 

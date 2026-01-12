@@ -19,28 +19,52 @@
 /** @file
  * Definitions for the Spatial Pooler in C++ 
  * 
+ * 
+ * 
  * rust-htm implementation based on NuPIC C++ implementation
  * @author Chris Mills 
  *
  */
 
 
+mod sdr;
 
 
-
-mod cell;
-//mod segment;
-//mod distal_synapse;
 
 // entry point
 fn main() 
 {
 
+    // setup engine
+  
+
+
+    // basic testing
 
     println!("HTM Community Edition of NuPIC - Rust Implementation");
 
-    let cell = cell::Cell::new(1, 10);
+    let sdr = SparseDistributedRepresentation::new(2048, [0x01; sdr::INPUT_BYTES]);
+
+    let active_bits = sdr.get_active_bits();
+
+    println!("Active bits: {:?}", active_bits);
+
+
+
+
  
-    println!("Created Cell with ID: {} at column ID: {}", cell.get_id(), cell.get_col_id());
+   
+
+
+
+
+
+    // launch server
+
+
+
+
+
+
 
 }
